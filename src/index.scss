@@ -170,5 +170,13 @@ $font-family: 'Montserrat', sans-serif;
     .load-button {
       margin-top: 90px;
     }
+
+    .active {
+      opacity: 1;
+    }
+
+    .inactive {
+      opacity: 0;
+    }
   }
 }
