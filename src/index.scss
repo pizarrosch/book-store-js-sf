@@ -1,0 +1,174 @@
+$font-family: 'Montserrat', sans-serif;
+
+@mixin font($font-size, $font-weight) {
+  font-size: $font-size;
+  font-weight: $font-weight;
+}
+
+.body {
+  font-family: $font-family;
+  width: 1440px;
+  margin: 0 auto;
+  position: relative;
+
+  .header {
+    .header_content-wrapper {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      justify-self: center;
+      width: 1120px;
+      margin: 0 auto;
+    }
+  }
+
+  .nav {
+    @include font(10px, 700);
+    text-transform: uppercase;
+    display: flex;
+    gap: 40px;
+  }
+
+  .account-actions-menu {
+    display: flex;
+    gap: 42px;
+  }
+
+  .main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .banner {
+      width: 1250px;
+      height: auto;
+    }
+
+    .book-change-box,
+    .top-books-box {
+      position: absolute;
+      width: 149px;
+      height: 204px;
+      background-color: #9E98DC;
+      @include font (18px, 700);
+      padding: 0 20px 20px 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: end;
+      flex-direction: column;
+      text-transform: uppercase;
+      right: 70px;
+      top: 200px;
+    }
+
+    .top-books-box {
+      width: 137px;
+      height: 273px;
+      background-color: #FF8FE6;
+      right: 0;
+      top: 490px;
+      padding: 0 47px 20px 21px;
+    }
+
+    .dots-container {
+      display: flex;
+      gap: 10px;
+      margin-top: -50px;
+
+      .dot {
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        background-color: #EFEEF6;
+      }
+
+      .violet {
+        background-color: #9E98DC;
+      }
+    }
+
+    .categories {
+      display: flex;
+      justify-content: center;
+      background-color: #EFEEF6;
+      width: 416px;
+      margin-top: 105px;
+      align-self: flex-start;
+      padding: 45px 0 58px 0;
+      box-sizing: border-box;
+      @include font (12px, 500);
+
+      .categories-list > li {
+        list-style: none;
+        margin-bottom: 23px;
+      }
+    }
+
+    .books-container {
+      display: flex;
+      position: absolute;
+      gap: 75px;
+      flex-wrap: wrap;
+      width: 923px;
+      top: 1020px;
+      right: 180px;
+      column-gap: 85px;
+
+      .book {
+        display: flex;
+
+        .book-cover {
+          width: 212px;
+          height: 307px;
+        }
+
+        .book_book-information {
+          display: flex;
+          flex-direction: column;
+          width: 176px;
+          justify-content: center;
+          margin-bottom: 50px;
+
+          .book-description, .author {
+            text-transform: capitalize;
+            font-family: 'Open Sans', sans-serif;
+            @include font (10px, 400);
+          }
+
+          .book-description {
+            margin-bottom: 16px;
+            margin-top: 16px;
+          }
+
+          .author {
+            margin-bottom: 4px;
+          }
+
+          .title {
+            @include font (16px, 700);
+            margin: 0 0 5px 0;
+          }
+
+          .price {
+            @include font (13px, 700);
+            margin-bottom: 16px;
+          }
+        }
+      }
+    }
+
+    .buy-button {
+      width: 176px;
+      height: 45px;
+      border: 1px #4C3DB2 solid;
+      @include font (8px, 700);
+      text-transform: uppercase;
+      color: #4C3DB2;
+      background-color: transparent;
+    }
+
+    .load-button {
+      margin-top: 90px;
+    }
+  }
+}
