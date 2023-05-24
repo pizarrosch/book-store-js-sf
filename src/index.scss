@@ -40,8 +40,12 @@ $font-family: 'Montserrat', sans-serif;
     align-items: center;
 
     .banner {
-      width: 1250px;
-      height: auto;
+      width: 1122px;
+      height: 702px;
+
+      .image {
+        background-repeat: no-repeat;
+      }
     }
 
     .book-change-box,
@@ -171,12 +175,14 @@ $font-family: 'Montserrat', sans-serif;
       margin-top: 90px;
     }
 
-    .active {
-      opacity: 1;
-    }
-
-    .inactive {
-      opacity: 0;
-    }
   }
 }
+
+.active {
+  opacity: 1;
+}
+
+.inactive {
+  opacity: 0;
+}
+
