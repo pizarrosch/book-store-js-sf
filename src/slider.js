@@ -31,7 +31,6 @@ const imageContent = [banner, business, autumnImg]
     })
   }
 
-
   function moveSlider(num) {
     imageContainer.querySelector('.active').classList.add('inactive');
     imageContainer.querySelector('.active').classList.remove('active');

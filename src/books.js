@@ -1,39 +1,19 @@
-import {logPlugin} from "@babel/preset-env/lib/debug";
-
 const loadBooksButton = document.querySelector('.load-button');
 const categoriesListContainer = document.querySelector('.categories-list');
 const categoriesList = document.querySelectorAll('.categories-list li');
 const booksContainer = document.querySelector('.books-container');
 import star from '../assets/Star.svg';
 import filledStar from '../assets/star-filled.svg';
+import noCoverBook from '../assets/no-cover.jpg';
 
 let initialBookCount = 0;
 
 let category = 'Architecture';
 let isClicked = false;
+let addedItemsArray = [];
+let itemNumber = 0;
 
-// export function handleLoadBooks() {
-//   loadBooksButton.addEventListener('click', () => {
-//     console.log('Clicked')
-//     initialBookCount += 6;
-//     getBooks();
-//   })
-// }
-
-// export function handleBuyButton () {
-//
-//
-//   // if (buyNowButton) {
-//   //   buyNowButton.forEach(button => {
-//   //     console.log(button)
-//   //     button.onclick = () => {
-//   //       !isClicked ? isClicked = true : isClicked = false;
-//   //     }
-//   //   })
-//   // }
-// }
-
- export function getBooksFromList() {
+export function getBooksFromList() {
   for (let listEl of categoriesList) {
     listEl.addEventListener('click', (e) => {
       categoriesListContainer.querySelector('.chosenCategory').classList.remove('chosenCategory');
@@ -41,6 +21,7 @@ let isClicked = false;
       booksContainer.innerHTML = '';
       category = listEl.innerHTML;
       getBooks();
+      localStorage.getItem('addStatus');
       // booksContainer.append(loadBooksButton);
     })
   }
@@ -51,9 +32,9 @@ export function getBooks() {
     .then(response => response.json())
     .then(data => {
         for (let book of data.items) {
-            const bookItem = `
+          const bookItem = `
                <div class="book">
-                <img src=${book.volumeInfo.imageLinks.thumbnail} alt="book-cover" class="book-cover"/>
+                <img src=${book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noCoverBook} alt="book-cover" class="book-cover"/>
                 <div class="book_book-information">
                   <span class="author">${book.volumeInfo.authors}</span>
                   <h2 class="title">${book.volumeInfo.title}</h2>
@@ -66,9 +47,9 @@ export function getBooks() {
                       <img src=${book.volumeInfo.averageRating > 4 ? filledStar : star}  alt="rating" width="12" height="12"/>
                     </div>
                     <span>${
-                      book.volumeInfo.ratingsCount ? 
-                      book.volumeInfo.ratingsCount + ` ${book.volumeInfo.ratingsCount === 1 ? 'review' : 'reviews'}` : 
-                      'N/A'}
+            book.volumeInfo.ratingsCount ?
+              book.volumeInfo.ratingsCount + ` ${book.volumeInfo.ratingsCount === 1 ? 'review' : 'reviews'}` :
+              'N/A'}
                     </span>
                   </div>
                   <p class="book-description">${book.volumeInfo.description || 'No description available'}</p>
@@ -91,19 +72,30 @@ export function getBooks() {
         };
 
         const buyButtons = document.querySelectorAll('.buy-button');
+        const itemsCounter = document.querySelector('.itemsNumber');
 
         for (let addButton of buyButtons) {
           addButton.onclick = () => {
-            if (!isClicked) {
-              isClicked = true;
+            if (addButton.innerHTML === 'Buy now') {
               addButton.innerHTML = 'In the cart'
-            } else {
-              isClicked = false;
+              itemNumber += 1;
+              addedItemsArray.push(`item ${itemNumber}`);
+              console.log(addedItemsArray)
+            } else if (addButton.innerHTML === 'In the cart') {
               addButton.innerHTML = 'Buy now'
+              addedItemsArray.pop();
+              console.log(addedItemsArray)
+            }
+
+            itemsCounter.style.display = 'block';
+            itemsCounter.innerHTML = `${addedItemsArray.length}`;
+
+            if (addedItemsArray.length === 0) {
+              itemsCounter.style.display = 'none';
             }
           }
         }
-    }
+      }
     )
 }
 

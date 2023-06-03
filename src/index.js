@@ -5,4 +5,3 @@ import {getBooksFromList, getBooks} from './books.js'
 setSlider();
 getBooks();
 getBooksFromList();
-// handleBuyButton();
