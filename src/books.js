@@ -1,3 +1,5 @@
+import {logPlugin} from "@babel/preset-env/lib/debug";
+
 const loadBooksButton = document.querySelector('.load-button');
 const categoriesListContainer = document.querySelector('.categories-list');
 const categoriesList = document.querySelectorAll('.categories-list li');
@@ -10,25 +12,26 @@ let initialBookCount = 0;
 let category = 'Architecture';
 let isClicked = false;
 
-export function handleLoadBooks() {
-  loadBooksButton.onclick = () => {
-    initialBookCount += 6;
-    getBooks();
-  }
-}
+// export function handleLoadBooks() {
+//   loadBooksButton.addEventListener('click', () => {
+//     console.log('Clicked')
+//     initialBookCount += 6;
+//     getBooks();
+//   })
+// }
 
-export function handleBuyButton () {
-  const buyNowButton = booksContainer.querySelectorAll('.buy-button');
-
-  if (buyNowButton) {
-    buyNowButton.forEach(button => {
-      console.log(button)
-      button.onclick = () => {
-        !isClicked ? isClicked = true : isClicked = false;
-      }
-    })
-  }
-}
+// export function handleBuyButton () {
+//
+//
+//   // if (buyNowButton) {
+//   //   buyNowButton.forEach(button => {
+//   //     console.log(button)
+//   //     button.onclick = () => {
+//   //       !isClicked ? isClicked = true : isClicked = false;
+//   //     }
+//   //   })
+//   // }
+// }
 
  export function getBooksFromList() {
   for (let listEl of categoriesList) {
@@ -38,6 +41,7 @@ export function handleBuyButton () {
       booksContainer.innerHTML = '';
       category = listEl.innerHTML;
       getBooks();
+      // booksContainer.append(loadBooksButton);
     })
   }
 }
@@ -69,14 +73,38 @@ export function getBooks() {
                   </div>
                   <p class="book-description">${book.volumeInfo.description || 'No description available'}</p>
                   <span class="price">${book.saleInfo.listPrice ? '$' + book.saleInfo.listPrice.amount : 'out of stock'}</span>
-                  <button class="button buy-button">${!isClicked ? 'Buy now' : 'In the cart'}</button>
+                  <button class="button buy-button">Buy now</button>
                 </div>
               </div>
             `
           booksContainer.innerHTML += bookItem
         }
+        const loadButton = document.createElement('button');
+        loadButton.classList.add('button', 'load-button');
+        loadButton.innerHTML = 'Load more';
+        booksContainer.append(loadButton);
+
+        loadButton.onclick = () => {
+          initialBookCount += 6;
+          getBooks();
+          loadButton.classList.add('hidden')
+        };
+
+        const buyButtons = document.querySelectorAll('.buy-button');
+
+        for (let addButton of buyButtons) {
+          addButton.onclick = () => {
+            if (!isClicked) {
+              isClicked = true;
+              addButton.innerHTML = 'In the cart'
+            } else {
+              isClicked = false;
+              addButton.innerHTML = 'Buy now'
+            }
+          }
+        }
     }
     )
-  handleLoadBooks();
 }
+
 

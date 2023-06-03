@@ -134,6 +134,7 @@ $font-family: 'Montserrat', sans-serif;
         column-gap: 85px;
         margin-top: 160px;
         margin-left: -50px;
+        justify-content: center;
 
         .book {
           display: flex;
@@ -216,8 +217,8 @@ $font-family: 'Montserrat', sans-serif;
 
 .load-button {
   cursor: pointer;
-  position: absolute;
-  bottom: 0;
+  //position: absolute;
+  //bottom: -100px;
 }
 
 .active {
@@ -226,6 +227,10 @@ $font-family: 'Montserrat', sans-serif;
 
 .inactive {
   opacity: 0;
+}
+
+.hidden {
+  display: none;
 }
 
 
