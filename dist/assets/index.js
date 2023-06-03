@@ -1,1 +1,0 @@
-import{setSlider}from"./slider.js";import("./index.scss"),setSlider();

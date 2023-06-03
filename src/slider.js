@@ -1,20 +1,20 @@
-import banner from '../dist/assets/banner.png';
+import banner from '../assets/banner.png';
 import business from '../assets/banner-2.png';
 import autumnImg from '../assets/banner-3.png';
 
 
 const imageContent = [banner, business, autumnImg]
 
-export function setSlider() {
+ function setSlider() {
   let imageContainer = document.querySelector('.banner');
+  const bannerImage = document.querySelector('.banner img');
   let dotContainer = document.querySelector('.dots-container');
 
   function setImages() {
     imageContent.forEach((image, index) => {
-      let imageDiv = `<div class="image n${index} ${index === 0 ? 'active' : 'inactive'}" style="background-image: url(${imageContent[index]})" data-index='${index}'></div>`;
+      let imageDiv = `<img class="image n${index} ${index === 0 ? 'active' : 'inactive'}" src="${imageContent[index]}" data-index='${index}' />`;
       imageContainer.innerHTML += imageDiv;
     })
-    console.log(imageContainer)
   }
 
   function setDots() {
@@ -35,8 +35,8 @@ export function setSlider() {
   function moveSlider(num) {
     imageContainer.querySelector('.active').classList.add('inactive');
     imageContainer.querySelector('.active').classList.remove('active');
+    imageContainer.querySelector('.n' + num).classList.remove('inactive');
     imageContainer.querySelector('.n' + num).classList.add('active');
-    imageContainer.querySelector('.active').classList.remove('inactive');
     // dotContainer.querySelector('.violet').classList.remove('violet');
     // dotContainer.querySelector('.n' + num).classList.add('violet');
   }
@@ -44,3 +44,5 @@ export function setSlider() {
   setImages();
   setDots();
 }
+
+export default setSlider;

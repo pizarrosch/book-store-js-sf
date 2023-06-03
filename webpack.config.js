@@ -4,12 +4,12 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 
 module.exports = {
-  entry: './src/index.js',
+  // entry: './src/index.js',
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: './[name].bundle.js',
     clean: true,
-    assetModuleFilename: './assets/[name][ext]'
+    assetModuleFilename: "assets/[name][ext]"
   },
   devServer: {
     static: './dist',
@@ -31,11 +31,20 @@ module.exports = {
         use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
       },
       {
-        test: /\.(svg|png)$/i,
+        test: /\.(png|jpe?g|gif|svg)$/i,
         type: "asset/resource",
-        // options: {
-        //   name: '[path][name].[ext]',
-        // },
+      },
+      {
+        test : /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              ['@babel/preset-env', {targets: "defaults"}]
+            ]
+          }
+        }
       },
       {
         test: /\.html$/i,

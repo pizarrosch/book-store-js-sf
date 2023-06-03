@@ -8,8 +8,7 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500&family=Montserrat:wght@500;600;700&display=swap"
     rel="stylesheet">
-  <link rel="stylesheet" href="../dist/src_index_scss.css" type="text/css">
-  <script src="./index.js" defer></script>
+  <link rel="stylesheet" href="index.scss" >
 </head>
 <body class="body">
   <header class="header">
@@ -30,7 +29,6 @@
   </header>
   <main class="main-container">
     <div class="banner"></div>
-<!--    <img src="../assets/banner.png" alt="banner" class="banner"/>-->
     <div class="book-change-box">
       <span>Change old book on new</span>
       <img src="../assets/arrow.svg" width="55" height="12"/>
@@ -40,80 +38,30 @@
       <img src="../assets/arrow.svg" width="55" height="12"/>
     </div>
     <div class="dots-container"></div>
-    <div class="categories">
-      <ul class="categories-list">
-        <li>Architecture</li>
-        <li>Art & fashion</li>
-        <li>Biography</li>
-        <li>Business</li>
-        <li>Drama</li>
-        <li>Fiction</li>
-        <li>Food & Drink</li>
-        <li>Health & Wellbeing</li>
-        <li>History & Politics</li>
-        <li>Humor</li>
-        <li>Poetry</li>
-        <li>Psychology</li>
-        <li>Science</li>
-        <li>Technology</li>
-        <li>Travel & Maps</li>
-      </ul>
-    </div>
-    <div class="books-container">
-      <div class="book">
-        <img src="../assets/cover.png" alt="book-cover" class="book-cover"/>
-        <div class="book_book-information">
-          <span class="author">Kevin Kwan</span>
-          <h2 class="title">Crazy rich asians</h2>
-          <img src="../assets/rating.png"  alt="rating" width="121" height="14"/>
-          <p class="book-description">
-            the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...
-          </p>
-          <span class="price">$4.99</span>
-          <button class="buy-button">Buy now</button>
-        </div>
+    <div class="books-and-categories">
+      <div class="categories">
+        <ul class="categories-list">
+          <li class="chosenCategory">Architecture</li>
+          <li>Art & fashion</li>
+          <li>Biography</li>
+          <li>Business</li>
+          <li>Drama</li>
+          <li>Fiction</li>
+          <li>Food & Drink</li>
+          <li>Health & Wellbeing</li>
+          <li>History & Politics</li>
+          <li>Humor</li>
+          <li>Poetry</li>
+          <li>Psychology</li>
+          <li>Science</li>
+          <li>Technology</li>
+          <li>Travel & Maps</li>
+        </ul>
       </div>
-      <div class="book">
-        <img src="../assets/cover%20(1).png" alt="book-cover" class="book-cover"/>
-        <div class="book_book-information">
-          <span class="author">Margaret Atwood</span>
-          <h2 class="title">The handmaid’s tale</h2>
-          <img src="../assets/rating.png"  alt="rating" width="121" height="14"/>
-          <p class="book-description">
-            This novel can be interpreted as a double narrative, Offred's tale and the handmaids' tales. The night...
-          </p>
-          <span class="price">$6.99</span>
-          <button class="buy-button">in the cart</button>
-        </div>
-      </div>
-      <div class="book">
-        <img src="../assets/cover.png" alt="book-cover" class="book-cover"/>
-        <div class="book_book-information">
-          <span class="author">Kevin Kwan</span>
-          <h2 class="title">Crazy rich asians</h2>
-          <img src="../assets/rating.png"  alt="rating" width="121" height="14"/>
-          <p class="book-description">
-            the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...
-          </p>
-          <span class="price">$4.99</span>
-          <button class="buy-button">Buy now</button>
-        </div>
-      </div>
-      <div class="book">
-        <img src="../assets/cover.png" alt="book-cover" class="book-cover"/>
-        <div class="book_book-information">
-          <span class="author">Kevin Kwan</span>
-          <h2 class="title">Crazy rich asians</h2>
-          <img src="../assets/rating.png"  alt="rating" width="121" height="14"/>
-          <p class="book-description">
-            the outrageously funny debut novel about three super-rich, pedigreed Chinese families and the gossip...
-          </p>
-          <span class="price">$4.99</span>
-          <button class="buy-button">Buy now</button>
-        </div>
+      <div class="books-container">
+        <button class="button load-button">Load more</button>
       </div>
     </div>
-    <button class="buy-button load-button">Load more</button>
   </main>
 </body>
 </html>
