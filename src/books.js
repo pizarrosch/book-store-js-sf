@@ -1,3 +1,5 @@
+import {logPlugin} from "@babel/preset-env/lib/debug";
+
 const loadBooksButton = document.querySelector('.load-button');
 const categoriesListContainer = document.querySelector('.categories-list');
 const categoriesList = document.querySelectorAll('.categories-list li');
@@ -28,6 +30,10 @@ export function getBooksFromList() {
 }
 
 export function getBooks() {
+  itemNumber++;
+  const storedItem = localStorage.getItem('addedBookID');
+  const parsedItem = JSON.parse(storedItem);
+
   fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${category}"&key=AIzaSyDNqOURIAkd6F9DFzmyw2L688i7-_tIlSo&printType=books&startIndex=${initialBookCount}&maxResults=6&langRestrict=en`)
     .then(response => response.json())
     .then(data => {
@@ -35,7 +41,7 @@ export function getBooks() {
           const bookItem = `
                <div class="book">
                 <img src=${book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noCoverBook} alt="book-cover" class="book-cover"/>
-                <div class="book_book-information">
+                <div class="book_book-information" data-index=${book.id}>
                   <span class="author">${book.volumeInfo.authors}</span>
                   <h2 class="title">${book.volumeInfo.title}</h2>
                   <div class="ratings-wrapper">
@@ -75,15 +81,18 @@ export function getBooks() {
         const itemsCounter = document.querySelector('.itemsNumber');
 
         for (let addButton of buyButtons) {
-          addButton.onclick = () => {
+          const storedItem = localStorage.getItem('addedBookID');
+          const parsedItem = JSON.parse(storedItem);
+          const parentIndex = addButton.closest('.book_book-information').dataset.index;
+
+          addButton.onclick = (e) => {
             if (addButton.innerHTML === 'Buy now') {
               addButton.innerHTML = 'In the cart'
-              itemNumber += 1;
-              addedItemsArray.push(`item ${itemNumber}`);
+              addedItemsArray.push(parentIndex);
               console.log(addedItemsArray)
             } else if (addButton.innerHTML === 'In the cart') {
               addButton.innerHTML = 'Buy now'
-              addedItemsArray.pop();
+              addedItemsArray = parsedItem.filter(item => item !== e.currentTarget.closest('.book_book-information').dataset.index);
               console.log(addedItemsArray)
             }
 
@@ -93,10 +102,26 @@ export function getBooks() {
             if (addedItemsArray.length === 0) {
               itemsCounter.style.display = 'none';
             }
+
+            const stringArr = JSON.stringify(addedItemsArray);
+            localStorage.setItem('addedBookID', stringArr);
+          }
+
+          for (itemNumber = 0; itemNumber < parsedItem.length; itemNumber++) {
+            if (parentIndex === parsedItem[itemNumber]) {
+              addButton.innerHTML = 'In the cart';
+              addedItemsArray = parsedItem;
+              itemsCounter.style.display = 'block';
+              itemsCounter.innerHTML = `${addedItemsArray.length}`;
+            }
           }
         }
       }
     )
 }
+
+
+
+
 
 

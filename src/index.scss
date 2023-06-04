@@ -27,6 +27,10 @@ $font-family: 'Montserrat', sans-serif;
       align-items: center;
       justify-self: center;
       width: 1120px;
+
+      h2 {
+        cursor: pointer;
+      }
     }
   }
 
@@ -42,19 +46,23 @@ $font-family: 'Montserrat', sans-serif;
     display: flex;
     gap: 42px;
 
-      .itemsNumber {
-        display: none;
-        position: absolute;
-        background-color: #FF353A;
-        border-radius: 50%;
-        width: 13px;
-        height: 13px;
-        @include font (10px, 500);
-        color: white;
-        text-align: center;
-        right: -4px;
-        bottom: -4px;
-      }
+     img {
+       cursor: pointer;
+     }
+
+    .itemsNumber {
+      display: none;
+      position: absolute;
+      background-color: #FF353A;
+      border-radius: 50%;
+      width: 13px;
+      height: 13px;
+      @include font (10px, 500);
+      color: white;
+      text-align: center;
+      right: -4px;
+      bottom: -4px;
+    }
   }
 
   .main-container {
