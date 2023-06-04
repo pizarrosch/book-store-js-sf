@@ -39,9 +39,9 @@ export function getBooks() {
     .then(data => {
         for (let book of data.items) {
           const bookItem = `
-               <div class="book">
+               <div class="book" data-index=${book.id}>
                 <img src=${book.volumeInfo.imageLinks ? book.volumeInfo.imageLinks.thumbnail : noCoverBook} alt="book-cover" class="book-cover"/>
-                <div class="book_book-information" data-index=${book.id}>
+                <div class="book_book-information" >
                   <span class="author">${book.volumeInfo.authors}</span>
                   <h2 class="title">${book.volumeInfo.title}</h2>
                   <div class="ratings-wrapper">
@@ -53,9 +53,9 @@ export function getBooks() {
                       <img src=${book.volumeInfo.averageRating > 4 ? filledStar : star}  alt="rating" width="12" height="12"/>
                     </div>
                     <span>${
-            book.volumeInfo.ratingsCount ?
-              book.volumeInfo.ratingsCount + ` ${book.volumeInfo.ratingsCount === 1 ? 'review' : 'reviews'}` :
-              'N/A'}
+                      book.volumeInfo.ratingsCount ?
+                      book.volumeInfo.ratingsCount + ` ${book.volumeInfo.ratingsCount === 1 ? 'review' : 'reviews'}` :
+                      'N/A'}
                     </span>
                   </div>
                   <p class="book-description">${book.volumeInfo.description || 'No description available'}</p>
@@ -81,9 +81,8 @@ export function getBooks() {
         const itemsCounter = document.querySelector('.itemsNumber');
 
         for (let addButton of buyButtons) {
-          const storedItem = localStorage.getItem('addedBookID');
-          const parsedItem = JSON.parse(storedItem);
-          const parentIndex = addButton.closest('.book_book-information').dataset.index;
+
+          const parentIndex = addButton.closest('.book').dataset.index;
 
           addButton.onclick = (e) => {
             if (addButton.innerHTML === 'Buy now') {
@@ -92,7 +91,9 @@ export function getBooks() {
               console.log(addedItemsArray)
             } else if (addButton.innerHTML === 'In the cart') {
               addButton.innerHTML = 'Buy now'
-              addedItemsArray = parsedItem.filter(item => item !== e.currentTarget.closest('.book_book-information').dataset.index);
+              const storedItem = localStorage.getItem('addedBookID');
+              const parsedItem = JSON.parse(storedItem);
+              addedItemsArray = parsedItem.filter(item => item !== e.currentTarget.closest('.book').dataset.index);
               console.log(addedItemsArray)
             }
 
@@ -105,8 +106,9 @@ export function getBooks() {
 
             const stringArr = JSON.stringify(addedItemsArray);
             localStorage.setItem('addedBookID', stringArr);
-          }
 
+
+          }
           for (itemNumber = 0; itemNumber < parsedItem.length; itemNumber++) {
             if (parentIndex === parsedItem[itemNumber]) {
               addButton.innerHTML = 'In the cart';
