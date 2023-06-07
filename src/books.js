@@ -1,6 +1,3 @@
-import {logPlugin} from "@babel/preset-env/lib/debug";
-
-const loadBooksButton = document.querySelector('.load-button');
 const categoriesListContainer = document.querySelector('.categories-list');
 const categoriesList = document.querySelectorAll('.categories-list li');
 const booksContainer = document.querySelector('.books-container');
@@ -24,7 +21,6 @@ export function getBooksFromList() {
       category = listEl.innerHTML;
       getBooks();
       localStorage.getItem('addStatus');
-      // booksContainer.append(loadBooksButton);
     })
   }
 }
@@ -53,9 +49,9 @@ export function getBooks() {
                       <img src=${book.volumeInfo.averageRating > 4 ? filledStar : star}  alt="rating" width="12" height="12"/>
                     </div>
                     <span>${
-                      book.volumeInfo.ratingsCount ?
-                      book.volumeInfo.ratingsCount + ` ${book.volumeInfo.ratingsCount === 1 ? 'review' : 'reviews'}` :
-                      'N/A'}
+            book.volumeInfo.ratingsCount ?
+              book.volumeInfo.ratingsCount + ` ${book.volumeInfo.ratingsCount === 1 ? 'review' : 'reviews'}` :
+              'N/A'}
                     </span>
                   </div>
                   <p class="book-description">${book.volumeInfo.description || 'No description available'}</p>
@@ -106,9 +102,8 @@ export function getBooks() {
 
             const stringArr = JSON.stringify(addedItemsArray);
             localStorage.setItem('addedBookID', stringArr);
-
-
           }
+
           for (itemNumber = 0; itemNumber < parsedItem.length; itemNumber++) {
             if (parentIndex === parsedItem[itemNumber]) {
               addButton.innerHTML = 'In the cart';

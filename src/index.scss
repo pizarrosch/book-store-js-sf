@@ -5,284 +5,365 @@ $font-family: 'Montserrat', sans-serif;
   font-weight: $font-weight;
 }
 
-@media all and (min-width: 401px) and (max-width: 1440px) {
-  .body {
-    min-height: 100vh;
-    font-family: $font-family;
-    width: 1440px;
-    margin: 0 auto;
-    position: relative;
-    scroll-behavior: smooth;
+.body {
+  min-height: 100vh;
+  font-family: $font-family;
+  width: 1440px;
+  margin: 0 auto;
+  position: relative;
+  scroll-behavior: smooth;
 
-    .header {
-      background-color: white;
-      position: sticky;
-      z-index: 1;
-      top: 0;
-      width: 1200px;
-      margin-left: 159px;
+  .header {
+    background-color: white;
+    position: sticky;
+    z-index: 1;
+    top: 0;
+    width: 1200px;
+    margin-left: 159px;
 
-      .header_content-wrapper {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        justify-self: center;
-        width: 1120px;
-
-        h2 {
-          cursor: pointer;
-        }
-      }
-    }
-
-    .nav {
-      @include font(10px, 700);
-      text-transform: uppercase;
+    .header_content-wrapper {
       display: flex;
-      gap: 40px;
+      justify-content: space-between;
+      align-items: center;
+      justify-self: center;
+      width: 1120px;
 
-      a {
-        text-decoration: none;
-        color: black;
-
-        :hover {
-          color: #4C3DB2;
-        }
-      }
-    }
-
-    .account-actions-menu {
-      position: relative;
-      display: flex;
-      gap: 42px;
-
-      img {
+      h2 {
         cursor: pointer;
       }
 
-      .itemsNumber {
-        display: none;
+      .nav {
+        @include font(10px, 700);
+        text-transform: uppercase;
+        display: flex;
+        gap: 40px;
+
+        a {
+          text-decoration: none;
+          color: black;
+
+          :hover {
+            color: #4C3DB2;
+          }
+        }
+      }
+
+      .account-actions-menu {
+        position: relative;
+        display: flex;
+        gap: 42px;
+
+        img {
+          cursor: pointer;
+        }
+
+        .itemsNumber {
+          display: none;
+          position: absolute;
+          background-color: #FF353A;
+          border-radius: 50%;
+          width: 13px;
+          height: 13px;
+          @include font(10px, 500);
+          color: white;
+          text-align: center;
+          right: -4px;
+          bottom: -4px;
+        }
+      }
+    }
+  }
+
+  .main-container {
+    margin-top: 48px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    .nav-for-mobile {
+      display: none;
+    }
+
+    .banner {
+      position: relative;
+      width: 1122px;
+      height: 702px;
+
+      .image {
         position: absolute;
-        background-color: #FF353A;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        bottom: 0;
+        background-repeat: no-repeat;
+      }
+    }
+
+    .book-change-box,
+    .top-books-box {
+      position: absolute;
+      width: 149px;
+      height: 204px;
+      background-color: #9E98DC;
+      @include font(18px, 700);
+      padding: 0 20px 20px 20px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: end;
+      flex-direction: column;
+      text-transform: uppercase;
+      right: 70px;
+      top: 200px;
+      cursor: pointer;
+    }
+
+    .top-books-box {
+      width: 137px;
+      height: 273px;
+      background-color: #FF8FE6;
+      right: 0;
+      top: 490px;
+      padding: 0 47px 20px 21px;
+    }
+
+    .dots-container {
+      display: flex;
+      gap: 10px;
+      margin-top: 17px;
+
+      .dot {
         border-radius: 50%;
-        width: 13px;
-        height: 13px;
-        @include font (10px, 500);
-        color: white;
-        text-align: center;
-        right: -4px;
-        bottom: -4px;
+        width: 12px;
+        height: 12px;
+        background-color: #EFEEF6;
+        cursor: pointer;
+      }
+
+      .violet {
+        background-color: #9E98DC;
+      }
+    }
+
+    .books-and-categories {
+      display: flex;
+      width: 100%;
+
+      .categories {
+        display: flex;
+        justify-content: center;
+        background-color: #EFEEF6;
+        width: 416px;
+        margin-top: 105px;
+        margin-bottom: 90px;
+        align-self: flex-start;
+        padding: 45px 0 58px 0;
+        box-sizing: border-box;
+        @include font(12px, 500);
+
+        .categories-list > li {
+          list-style: none;
+          margin-bottom: 23px;
+          cursor: pointer;
+        }
+
+        .categories-list > .chosenCategory {
+          @include font(16px, 700);
+          list-style: disc;
+        }
+      }
+
+      .books-container {
+        display: flex;
+        position: relative;
+        gap: 75px;
+        flex-wrap: wrap;
+        width: 923px;
+        column-gap: 85px;
+        margin-top: 160px;
+        margin-left: -50px;
+        justify-content: center;
+
+        .book {
+          display: flex;
+          gap: 36px;
+
+          .book-cover {
+            width: 212px;
+            height: 287px;
+          }
+
+          .book_book-information {
+            display: flex;
+            flex-direction: column;
+            width: 176px;
+            justify-content: center;
+            margin-bottom: 50px;
+
+            .book-description, .author {
+              text-transform: capitalize;
+              font-family: 'Open Sans', sans-serif;
+              @include font(10px, 400);
+            }
+
+            .book-description {
+              display: -webkit-box;
+              margin-bottom: 16px;
+              margin-top: 16px;
+              -webkit-line-clamp: 3;
+              text-overflow: ellipsis;
+              -webkit-box-orient: vertical;
+              overflow: hidden;
+            }
+
+            .author {
+              margin-bottom: 4px;
+            }
+
+            .title {
+              @include font(16px, 700);
+              margin: 0 0 5px 0;
+            }
+
+            .price {
+              @include font(13px, 700);
+              margin-bottom: 16px;
+            }
+          }
+        }
+
+        .ratings-wrapper {
+          display: flex;
+          gap: 6px;
+          align-items: center;
+
+          .rating {
+            display: flex;
+            gap: 1px;
+          }
+
+          span {
+            font-family: 'Open Sans', sans-serif;
+            @include font(10px, 400);
+          }
+        }
+      }
+    }
+  }
+}
+
+.button {
+  width: 176px;
+  height: 45px;
+  border: 1px #4C3DB2 solid;
+  @include font(8px, 700);
+  text-transform: uppercase;
+  color: #4C3DB2;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.load-button {
+  cursor: pointer;
+}
+
+.active {
+  opacity: 1;
+}
+
+.inactive {
+  opacity: 0;
+}
+
+.hidden {
+  display: none;
+}
+
+@media only screen and (max-width: 425px) {
+  .body {
+    overflow-x: hidden;
+
+    .header {
+      .header_content-wrapper {
+        justify-content: space-evenly;
+
+        h2 {
+          font-size: 160px;
+        }
+
+        .nav {
+          display: none;
+        }
+
+        .account-actions-menu {
+          display: flex;
+          flex-direction: column;
+
+          img {
+            width: 30px;
+            height: 30px;
+          }
+        }
       }
     }
 
     .main-container {
-      margin-top: 48px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-
-      .banner {
-        position: relative;
-        width: 1122px;
-        height: 702px;
-
-        .image {
-          position: absolute;
-          width: 100%;
-          height: 100%;
-          left: 0;
-          bottom: 0;
-          background-repeat: no-repeat;
-        }
-      }
-
-      .book-change-box,
-      .top-books-box {
-        position: absolute;
-        width: 149px;
-        height: 204px;
-        background-color: #9E98DC;
-        @include font (18px, 700);
-        padding: 0 20px 20px 20px;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: end;
-        flex-direction: column;
-        text-transform: uppercase;
-        right: 70px;
-        top: 200px;
-        cursor: pointer;
-      }
-
-      .top-books-box {
-        width: 137px;
-        height: 273px;
-        background-color: #FF8FE6;
-        right: 0;
-        top: 490px;
-        padding: 0 47px 20px 21px;
-      }
+      margin-top: 0;
 
       .dots-container {
-        display: flex;
-        gap: 10px;
-        margin-top: 17px;
-
-        .dot {
-          border-radius: 50%;
-          width: 12px;
-          height: 12px;
-          background-color: #EFEEF6;
-          cursor: pointer;
-        }
-
-        .violet {
-          background-color: #9E98DC;
-        }
+        display: none;
       }
+
+      .banner {
+        width: 80%;
+      }
+
+      .top-books-box,
+      .book-change-box {
+        display: none;
+      }
+
       .books-and-categories {
+        margin-left: 300px;
         display: flex;
-        width: 100%;
+        gap: 100px;
 
         .categories {
-          display: flex;
-          justify-content: center;
-          background-color: #EFEEF6;
-          width: 416px;
-          margin-top: 105px;
-          margin-bottom: 90px;
-          align-self: flex-start;
-          padding: 45px 0 58px 0;
-          box-sizing: border-box;
-          @include font (12px, 500);
-
-          .categories-list > li {
-            list-style: none;
-            margin-bottom: 23px;
-            cursor: pointer;
-          }
+          @include font(30px, 500);
+          width: 300px;
 
           .categories-list > .chosenCategory {
-            @include font (16px, 700);
-            list-style: disc;
+            @include font(30px, 700);
           }
         }
 
         .books-container {
           display: flex;
-          position: relative;
-          gap: 75px;
-          flex-wrap: wrap;
-          width: 923px;
-          column-gap: 85px;
-          margin-top: 160px;
-          margin-left: -50px;
-          justify-content: center;
+          flex-direction: column;
+          margin-left: 20px;
 
           .book {
-            display: flex;
-            gap: 36px;
 
             .book-cover {
-              width: 212px;
-              height: 287px;
+              width: 300px;
+              height: auto;
             }
 
             .book_book-information {
-              display: flex;
-              flex-direction: column;
-              width: 176px;
-              justify-content: center;
-              margin-bottom: 50px;
+              width: 250px;
 
               .book-description, .author {
-                text-transform: capitalize;
-                font-family: 'Open Sans', sans-serif;
-                @include font (10px, 400);
-              }
-
-              .book-description {
-                display: -webkit-box;
-                margin-bottom: 16px;
-                margin-top: 16px;
-                -webkit-line-clamp: 3;
-                text-overflow: ellipsis;
-                -webkit-box-orient: vertical;
-                overflow: hidden;
-              }
-
-              .author {
-                margin-bottom: 4px;
+                @include font(24px, 400);
               }
 
               .title {
-                @include font (16px, 700);
-                margin: 0 0 5px 0;
+                @include font(30px, 700);
               }
 
               .price {
-                @include font (13px, 700);
-                margin-bottom: 16px;
+                @include font(24px, 700);
               }
             }
           }
-
-          .ratings-wrapper {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-
-            .rating {
-              display: flex;
-              gap: 1px;
-            }
-
-            span {
-              font-family: 'Open Sans', sans-serif;
-              @include font (10px, 400);
-            }
-          }
-        }
-      }
-    }
-  }
-
-  .button {
-    width: 176px;
-    height: 45px;
-    border: 1px #4C3DB2 solid;
-    @include font (8px, 700);
-    text-transform: uppercase;
-    color: #4C3DB2;
-    background-color: transparent;
-    cursor: pointer;
-  }
-
-  .load-button {
-    cursor: pointer;
-  }
-
-  .active {
-    opacity: 1;
-  }
-
-  .inactive {
-    opacity: 0;
-  }
-
-  .hidden {
-    display: none;
-  }
-}
-
-@media all and (max-width: 400px){
-  .body {
-    width: 390px;
-
-    .header {
-      .header_content-wrapper {
-        h2 {
-          font-size: 60px;
         }
       }
     }
