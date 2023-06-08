@@ -11,6 +11,7 @@ let category = 'Architecture';
 let isClicked = false;
 let addedItemsArray = [];
 let itemNumber = 0;
+const apiKey = 'AIzaSyDNqOURIAkd6F9DFzmyw2L688i7-_tIlSo'
 
 export function getBooksFromList() {
   for (let listEl of categoriesList) {
@@ -30,7 +31,7 @@ export function getBooks() {
   const storedItem = localStorage.getItem('addedBookID');
   const parsedItem = JSON.parse(storedItem);
 
-  fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${category}"&key=AIzaSyDNqOURIAkd6F9DFzmyw2L688i7-_tIlSo&printType=books&startIndex=${initialBookCount}&maxResults=6&langRestrict=en`)
+  fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${category}"&key=${apiKey}&printType=books&startIndex=${initialBookCount}&maxResults=6&langRestrict=en`)
     .then(response => response.json())
     .then(data => {
         for (let book of data.items) {
@@ -84,13 +85,13 @@ export function getBooks() {
             if (addButton.innerHTML === 'Buy now') {
               addButton.innerHTML = 'In the cart'
               addedItemsArray.push(parentIndex);
-              console.log(addedItemsArray)
             } else if (addButton.innerHTML === 'In the cart') {
               addButton.innerHTML = 'Buy now'
               const storedItem = localStorage.getItem('addedBookID');
-              const parsedItem = JSON.parse(storedItem);
-              addedItemsArray = parsedItem.filter(item => item !== e.currentTarget.closest('.book').dataset.index);
-              console.log(addedItemsArray)
+              if (storedItem) {
+                const parsedItem = JSON.parse(storedItem);
+                addedItemsArray = parsedItem.filter(item => item !== e.currentTarget.closest('.book').dataset.index);
+              }
             }
 
             itemsCounter.style.display = 'block';
@@ -104,12 +105,14 @@ export function getBooks() {
             localStorage.setItem('addedBookID', stringArr);
           }
 
-          for (itemNumber = 0; itemNumber < parsedItem.length; itemNumber++) {
-            if (parentIndex === parsedItem[itemNumber]) {
-              addButton.innerHTML = 'In the cart';
-              addedItemsArray = parsedItem;
-              itemsCounter.style.display = 'block';
-              itemsCounter.innerHTML = `${addedItemsArray.length}`;
+          if (parsedItem) {
+            for (itemNumber = 0; itemNumber < parsedItem.length; itemNumber++) {
+              if (parentIndex === parsedItem[itemNumber]) {
+                addButton.innerHTML = 'In the cart';
+                addedItemsArray = parsedItem;
+                itemsCounter.style.display = 'block';
+                itemsCounter.innerHTML = `${addedItemsArray.length}`;
+              }
             }
           }
         }
